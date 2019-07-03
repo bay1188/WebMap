@@ -397,7 +397,7 @@ def index(request, filterservice="", filterportid=""):
 				'href':viewhref,
 				'portstats':portstats
 			}
-			hostcount = (hostcount + hostnum)
+			hostcount = (hostcount + int(hostnum))
 
 		r['tr'] = OrderedDict(sorted(r['tr'].items()))
 		r['stats']['xmlcount'] = xmlfilescount
