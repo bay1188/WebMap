@@ -93,7 +93,7 @@ def details(request, address):
 		elif type(i['address']) is list:
 			for ai in i['address']:
 				if ai['@addrtype'] == 'ipv4':
-					saddress = ai['@addr'] 
+					saddress = ai['@addr']
 
 		if str(saddress) == address:
 			hostname = ''
@@ -191,7 +191,7 @@ def details(request, address):
 						servicename = p['service']['@name']
 					else:
 						servicename = ''
-							
+
 					r['tr'][p['@portid']] = {
 						'service': servicename,
 						'protocol': p['@protocol'],
@@ -305,7 +305,7 @@ def details(request, address):
 					cveexdbout+\
 					'</div>'
 					cveids[cveobj['id']] = cveobj['id']
-				
+
 			r['cveids'] = cveids
 			r['cvelist'] = cveout
 
@@ -348,6 +348,7 @@ def index(request, filterservice="", filterportid=""):
 		r['stats'] = { 'po':0, 'pc':0, 'pf':0}
 
 		xmlfilescount = 0
+		hostcount = 0
 		for i in xmlfiles:
 			if re.search('\.xml$', i) is None:
 				continue
@@ -396,9 +397,11 @@ def index(request, filterservice="", filterportid=""):
 				'href':viewhref,
 				'portstats':portstats
 			}
+			hostcount = (hostcount + hostnum)
 
 		r['tr'] = OrderedDict(sorted(r['tr'].items()))
 		r['stats']['xmlcount'] = xmlfilescount
+		r['stats']['hostcount'] = hostcount
 
 		return render(request, 'nmapreport/nmap_xmlfiles.html', r)
 
@@ -466,7 +469,7 @@ def index(request, filterservice="", filterportid=""):
 		elif type(i['address']) is list:
 			for ai in i['address']:
 				if ai['@addrtype'] == 'ipv4':
-					address = ai['@addr'] 
+					address = ai['@addr']
 
 		addressmd5 = hashlib.md5(str(address).encode('utf-8')).hexdigest()
 
@@ -522,7 +525,7 @@ def index(request, filterservice="", filterportid=""):
 								cpe[address][cpei] = cpei
 						else:
 							cpe[address][p['service']['cpe']] = p['service']['cpe']
-		
+
 
 					if '@ostype' in p['service']:
 						if p['service']['@ostype'] in allostypelist:
@@ -541,7 +544,7 @@ def index(request, filterservice="", filterportid=""):
 					picount[p['@portid']] = (picount[p['@portid']] + 1)
 				else:
 					picount[p['@portid']] = 1
-					
+
 				if p['state']['@state'] == 'closed':
 					ports['closed'] = (ports['closed'] + 1)
 					pc = (pc + 1)

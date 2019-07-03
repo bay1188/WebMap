@@ -12,6 +12,14 @@
 				</div>
 			</div>
 			<div class="col s12 m3">
+				<div class="card blue-1">
+					<div class="card-content blue darken-1 white-text">
+						<span class="card-title"><i class="fas fa-door-open"></i> {{ stats.hostcount }}</span>
+						<p>Total hosts</p>
+					</div>
+				</div>
+			</div>
+			<div class="col s12 m3">
 				<div class="card darken-1">
 					<div class="card-content green darken-1 white-text">
 						<span class="card-title"><i class="fas fa-door-open"></i> {{ stats.po }}</span>
@@ -53,7 +61,7 @@
 						<td class="hide-on-small-only"><code>{{ v.startstr }}</code></td>
 						<td class="hide-on-small-only">{{ v.hostnum }}</td>
 						<td>
-							<i class="fas fa-door-open green-text"></i><span class="green-text">{{ v.portstats.po }}</span> 
+							<i class="fas fa-door-open green-text"></i><span class="green-text">{{ v.portstats.po }}</span>
 							<i class="fas fa-door-closed red-text"></i><span class="red-text">{{ v.portstats.pc }}</span>
 							<i class="fas fa-filter grey-text"></i><span class="grey-text">{{ v.portstats.pf }}</span>
 						</td>
